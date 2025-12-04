@@ -1,0 +1,73 @@
+{
+  "name": "@ariary/sdk",
+  "version": "1.0.0",
+  "description": "SDK officiel pour l'API de paiement Ariary",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./payment": {
+      "types": "./dist/payment/index.d.ts",
+      "import": "./dist/payment/index.mjs",
+      "require": "./dist/payment/index.js"
+    },
+    "./sms": {
+      "types": "./dist/sms/index.d.ts",
+      "import": "./dist/sms/index.mjs",
+      "require": "./dist/sms/index.js"
+    },
+    "./transfert": {
+      "types": "./dist/transfert/index.d.ts",
+      "import": "./dist/transfert/index.mjs",
+      "require": "./dist/transfert/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "tsup": [
+    {
+      "entry": {
+        "index": "src/index.ts",
+        "payment/index": "src/payment/index.ts",
+        "sms/index": "src/sms/index.ts",
+        "transfert/index": "src/transfert/index.ts"
+      },
+      "format": [
+        "cjs",
+        "esm"
+      ],
+      "outDir": "dist",
+      "dts": true,
+      "splitting": false,
+      "sourcemap": false,
+      "clean": true,
+      "minify": false
+    }
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ariary",
+    "payment",
+    "sms",
+    "transfer",
+    "api"
+  ],
+  "author": "Ariary",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.13.2"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  }
+}
