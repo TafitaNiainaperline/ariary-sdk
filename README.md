@@ -153,7 +153,8 @@ new AriarySDK(config: ApiConfig)
 - `apiKey: string` - Votre clé API
 - `secretId: string` - Votre ID secret
 - `projectId: string` - Votre ID projet
-- `baseUrl?: string` - URL de base (optionnel, par défaut: https://fs-pay-rifont.atydago.com/payment)
+- `baseUrl?: string` - URL de base pour SMS et Transfert (optionnel, par défaut: https://fs-pay-rifont.atydago.com/payment)
+- `paymentBaseUrl?: string` - URL pour les paiements (optionnel, par défaut: https://ariarypay.com/payment)
 
 ## License
 

@@ -15,4 +15,5 @@ export interface ApiConfig {
   secretId: string;
   projectId: string;
   baseUrl?: string;
+  paymentBaseUrl?: string;
 }

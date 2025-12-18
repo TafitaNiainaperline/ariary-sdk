@@ -8,16 +8,22 @@ import { ApiConfig, CreatePaymentDto, PaymentResponseDto } from './types';
  * SDK client pour l'API de paiement Ariary
  */
 export class AriarySDK {
-  private apiClient: ApiClient;
+  private paymentClient: ApiClient;
+  private defaultClient: ApiClient;
   public payment: PaymentService;
   public sms: SmsService;
   public transfer: TransferService;
 
   constructor(config: ApiConfig) {
-    this.apiClient = new ApiClient(config);
-    this.payment = new PaymentService(this.apiClient);
-    this.sms = new SmsService(this.apiClient);
-    this.transfer = new TransferService(this.apiClient);
+    // Client spécifique pour Payment (par défaut: https://ariarypay.com/payment)
+    this.paymentClient = new ApiClient(config, config.paymentBaseUrl);
+    // Client pour SMS et Transfert (par défaut: https://fs-pay-rifont.atydago.com/payment)
+    const smsTransferConfig = { ...config, baseUrl: config.baseUrl || 'https://fs-pay-rifont.atydago.com/payment' };
+    this.defaultClient = new ApiClient(smsTransferConfig);
+
+    this.payment = new PaymentService(this.paymentClient);
+    this.sms = new SmsService(this.defaultClient);
+    this.transfer = new TransferService(this.defaultClient);
   }
 }
 

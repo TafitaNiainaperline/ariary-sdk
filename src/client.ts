@@ -5,14 +5,13 @@ export class ApiClient {
   private client: AxiosInstance;
   private config: ApiConfig;
 
-  constructor(config: ApiConfig) {
-    this.config = {
-      baseUrl: 'https://fs-pay-rifont.atydago.com/payment',
-      ...config,
-    };
+  constructor(config: ApiConfig, baseUrl?: string) {
+    this.config = config;
+
+    const finalBaseUrl = baseUrl || config.baseUrl || 'https://ariarypay.com/payment';
 
     this.client = axios.create({
-      baseURL: this.config.baseUrl,
+      baseURL: finalBaseUrl,
       headers: {
         'Content-Type': 'application/json',
       },
