@@ -61,6 +61,9 @@ const result = await sdk.sms.notifyBulk([
   { message: 'Message 1', numbers: '261345678901' },
   { message: 'Message 2', numbers: '261345678902' }
 ]);
+
+// Récupérer tous les SMS
+const allSms = await sdk.sms.getAll();
 ```
 
 ### Transfer
