@@ -1,20 +1,19 @@
-# @ariary/sdk
+# ariari
 
 SDK officiel pour l'API de paiement Ariary. Permet d'envoyer des paiements, des SMS et des transferts d'argent.
 
 ## Installation
 
 ```bash
-npm install @ariary/sdk
+npm install ariari
 ```
 
 ## Configuration
 
 ```typescript
-import { AriarySDK } from '@ariary/sdk';
+import { AriarySDK } from 'ariari';
 
 const sdk = new AriarySDK({
-  apiKey: 'votre_api_key',
   secretId: 'votre_secret_id',
   projectId: 'votre_project_id'
 });
@@ -109,13 +108,13 @@ Tu peux aussi importer les types et services directement:
 
 ```typescript
 // Depuis le payment
-import { PaymentService, CreatePaymentDto, PaymentResponseDto } from '@ariary/sdk/payment';
+import { PaymentService, CreatePaymentDto, PaymentResponseDto } from 'ariari/payment';
 
 // Depuis le SMS
-import { SmsService, SendSmsDto, MultiSmsResponseDto } from '@ariary/sdk/sms';
+import { SmsService, SendSmsDto, MultiSmsResponseDto } from 'ariari/sms';
 
 // Depuis le transfer
-import { TransferService, SendTransactionDto, SendTransactionResponse } from '@ariary/sdk/transfert';
+import { TransferService, SendTransactionDto, SendTransactionResponse } from 'ariari/transfert';
 ```
 
 ## Types
@@ -150,11 +149,9 @@ new AriarySDK(config: ApiConfig)
 ```
 
 **config:**
-- `apiKey: string` - Votre clé API
 - `secretId: string` - Votre ID secret
 - `projectId: string` - Votre ID projet
-- `baseUrl?: string` - URL de base pour SMS et Transfert (optionnel, par défaut: https://fs-pay-rifont.atydago.com/payment)
-- `paymentBaseUrl?: string` - URL pour les paiements (optionnel, par défaut: https://ariarypay.com/payment)
+- `baseUrl?: string` - URL de base pour tous les services (optionnel, par défaut: https://back.ariari.mg/payment/api-docs)
 
 ## License
 
