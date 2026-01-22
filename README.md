@@ -53,31 +53,17 @@ const updated = await sdk.payment.updatePaymentRest(paymentId, 'TICKET123');
 ### SMS
 
 ```typescript
-// Envoyer un SMS à plusieurs numéros
-const result = await sdk.sms.sendMultiSms({
-  phones: ['261345678901', '261345678902'],
-  message: 'Bonjour!'
-});
+// Envoyer un SMS à un numéro
+const result = await sdk.sms.notify('Bonjour!', '261345678901');
 
-// Envoyer des messages différents en masse
-const bulkResult = await sdk.sms.sendBulkSms({
-  messages: [
-    { phones: ['261345678901'], message: 'Message 1' },
-    { phones: ['261345678902'], message: 'Message 2' }
-  ]
-});
+// Envoyer un SMS à plusieurs numéros (même message)
+const result = await sdk.sms.notify('Bonjour!', ['261345678901', '261345678902']);
 
-// Récupérer l'historique des SMS
-const history = await sdk.sms.getSmsHistory();
-
-// Récupérer un SMS par ID
-const sms = await sdk.sms.getSmsById(smsId);
-
-// Mettre à jour un SMS
-const updated = await sdk.sms.updateSms(smsId, { message: 'Nouveau message' });
-
-// Supprimer un SMS
-await sdk.sms.deleteSms(smsId);
+// Envoyer des SMS différents
+const result = await sdk.sms.notifyBulk([
+  { message: 'Message 1', numbers: '261345678901' },
+  { message: 'Message 2', numbers: '261345678902' }
+]);
 ```
 
 ### Transfer
@@ -102,19 +88,10 @@ const updated = await sdk.transfer.updateTransaction(transactionId, {
 });
 ```
 
-## Imports par module
-
-Tu peux aussi importer les types et services directement:
+## Imports
 
 ```typescript
-// Depuis le payment
-import { PaymentService, CreatePaymentDto, PaymentResponseDto } from 'ariari/payment';
-
-// Depuis le SMS
-import { SmsService, SendSmsDto, MultiSmsResponseDto } from 'ariari/sms';
-
-// Depuis le transfer
-import { TransferService, SendTransactionDto, SendTransactionResponse } from 'ariari/transfert';
+import { AriarySDK, PaymentService, SmsService, TransferService } from 'ariari';
 ```
 
 ## Types
