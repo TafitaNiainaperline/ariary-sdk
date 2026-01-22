@@ -68,6 +68,9 @@ const result = await sdk.sms.notifyBulk([
 ```typescript
 // Envoyer une transaction
 const transaction = await sdk.transfer.send('261345678901', 5000);
+
+// Récupérer toutes les transactions
+const allTransactions = await sdk.transfer.getAll();
 ```
 
 ## Imports
