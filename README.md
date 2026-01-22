@@ -53,10 +53,7 @@ const updated = await sdk.payment.updatePaymentRest(paymentId, 'TICKET123');
 ### SMS
 
 ```typescript
-// Envoyer un SMS à un numéro
-const result = await sdk.sms.notify('Bonjour!', '261345678901');
-
-// Envoyer un SMS à plusieurs numéros (même message)
+// Envoyer un SMS à un ou plusieurs numéros
 const result = await sdk.sms.notify('Bonjour!', ['261345678901', '261345678902']);
 
 // Envoyer des SMS différents
