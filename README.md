@@ -5,13 +5,13 @@ SDK officiel pour l'API de paiement Ariary. Permet d'envoyer des paiements, des 
 ## Installation
 
 ```bash
-npm install ariari
+npm install @ariary/sdk
 ```
 
 ## Configuration
 
 ```typescript
-import { AriarySDK } from 'ariari';
+import { AriarySDK } from '@ariary/sdk';
 
 const sdk = new AriarySDK({
   secretId: 'votre_secret_id',
@@ -76,7 +76,7 @@ const allTransactions = await sdk.transfer.getAll();
 ## Imports
 
 ```typescript
-import { AriarySDK, PaymentService, SmsService, TransferService } from 'ariari';
+import { AriarySDK, PaymentService, SmsService, TransferService } from '@ariary/sdk';
 ```
 
 ## Types
