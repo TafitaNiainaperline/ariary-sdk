@@ -1,75 +1,35 @@
 import { ApiClient } from './client';
-import {
-  SendSmsDto,
-  BulkSmsDto,
-  ResponseSmsDto,
-  MultiSmsResponseDto,
-  BulkSmsResponseDto,
-} from './types';
+import { MultiSmsResponseDto, BulkSmsResponseDto } from './types';
 
 export class SmsService {
   constructor(private client: ApiClient) {}
 
-  async sendMultiSms(smsData: SendSmsDto): Promise<MultiSmsResponseDto> {
+  async notify(
+    message: string,
+    numbers: string | string[]
+  ): Promise<MultiSmsResponseDto> {
+    const phones = Array.isArray(numbers) ? numbers : [numbers];
+
     const response = await this.client.post<MultiSmsResponseDto>(
       '/api/sms/multi',
-      smsData,
+      { phones, message },
       true
     );
 
     return response;
   }
 
- 
-  async sendBulkSms(bulkData: BulkSmsDto): Promise<BulkSmsResponseDto> {
+  async notifyBulk(
+    messages: { message: string; numbers: string | string[] }[]
+  ): Promise<BulkSmsResponseDto> {
+    const bulkMessages = messages.map((item) => ({
+      message: item.message,
+      phones: Array.isArray(item.numbers) ? item.numbers : [item.numbers],
+    }));
+
     const response = await this.client.post<BulkSmsResponseDto>(
       '/api/sms/bulk',
-      bulkData,
-      true
-    );
-
-    return response;
-  }
-
-
-  async getSmsHistory(): Promise<ResponseSmsDto[]> {
-    const response = await this.client.get<ResponseSmsDto[]>(
-      '/api/sms',
-      true
-    );
-
-    return response;
-  }
-
- 
-  async getSmsById(smsId: string): Promise<ResponseSmsDto> {
-    const response = await this.client.get<ResponseSmsDto>(
-      `/api/sms/${smsId}`,
-      true
-    );
-
-    return response;
-  }
-
-
-  async updateSms(
-    smsId: string,
-    updateData: Partial<SendSmsDto>
-  ): Promise<ResponseSmsDto> {
-    const response = await this.client.patch<ResponseSmsDto>(
-      `/api/sms/${smsId}`,
-      updateData,
-      true
-    );
-
-    return response;
-  }
-
-  
-  async deleteSms(smsId: string): Promise<ResponseSmsDto> {
-    const response = await this.client.patch<ResponseSmsDto>(
-      `/api/sms/${smsId}`,
-      {},
+      { messages: bulkMessages },
       true
     );
 
