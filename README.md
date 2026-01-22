@@ -67,22 +67,7 @@ const result = await sdk.sms.notifyBulk([
 
 ```typescript
 // Envoyer une transaction
-const transaction = await sdk.transfer.sendTransaction({
-  phone: '261345678901',
-  amount: 5000
-});
-
-// Récupérer toutes les transactions
-const allTransactions = await sdk.transfer.getAllTransactions();
-
-// Récupérer une transaction par ID
-const transaction = await sdk.transfer.getTransactionById(transactionId);
-
-// Mettre à jour une transaction
-const updated = await sdk.transfer.updateTransaction(transactionId, {
-  phone: '261345678902',
-  amount: 10000
-});
+const transaction = await sdk.transfer.send('261345678901', 5000);
 ```
 
 ## Imports
