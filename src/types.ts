@@ -11,9 +11,7 @@ export interface ApiResponse<T> {
 }
 
 export interface ApiConfig {
-  apiKey: string;
   secretId: string;
   projectId: string;
   baseUrl?: string;
-  paymentBaseUrl?: string;
 }
