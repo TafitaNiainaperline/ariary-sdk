@@ -16,4 +16,13 @@ export class TransferService {
 
     return response;
   }
+
+  async getAll(): Promise<SendTransactionResponse[]> {
+    const response = await this.client.get<SendTransactionResponse[]>(
+      '/api/send-transaction',
+      true
+    );
+
+    return response;
+  }
 }
