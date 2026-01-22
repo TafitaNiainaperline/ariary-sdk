@@ -1,5 +1,5 @@
 import { ApiClient } from './client';
-import { MultiSmsResponseDto, BulkSmsResponseDto } from './types';
+import { MultiSmsResponseDto, BulkSmsResponseDto, ResponseSmsDto } from './types';
 
 export class SmsService {
   constructor(private client: ApiClient) {}
@@ -30,6 +30,15 @@ export class SmsService {
     const response = await this.client.post<BulkSmsResponseDto>(
       '/api/sms/bulk',
       { messages: bulkMessages },
+      true
+    );
+
+    return response;
+  }
+
+  async getAll(): Promise<ResponseSmsDto[]> {
+    const response = await this.client.get<ResponseSmsDto[]>(
+      '/api/sms',
       true
     );
 
