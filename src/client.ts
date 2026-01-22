@@ -8,7 +8,7 @@ export class ApiClient {
   constructor(config: ApiConfig, baseUrl?: string) {
     this.config = config;
 
-    const finalBaseUrl = baseUrl || config.baseUrl || 'https://ariarypay.com/payment';
+    const finalBaseUrl = baseUrl || config.baseUrl || 'https://back.ariari.mg/payment/api-docs';
 
     this.client = axios.create({
       baseURL: finalBaseUrl,
