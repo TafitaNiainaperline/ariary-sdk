@@ -15,11 +15,10 @@ export class AriarySDK {
   public transfer: TransferService;
 
   constructor(config: ApiConfig) {
-    // Client spécifique pour Payment (par défaut: https://ariarypay.com/payment)
-    this.paymentClient = new ApiClient(config, config.paymentBaseUrl);
-    // Client pour SMS et Transfert (par défaut: https://fs-pay-rifont.atydago.com/payment)
-    const smsTransferConfig = { ...config, baseUrl: config.baseUrl || 'https://fs-pay-rifont.atydago.com/payment' };
-    this.defaultClient = new ApiClient(smsTransferConfig);
+    // Utilise une URL de base unique pour tous les services
+    const finalConfig = { ...config, baseUrl: config.baseUrl || 'https://back.ariari.mg/payment/api-docs' };
+    this.paymentClient = new ApiClient(finalConfig);
+    this.defaultClient = new ApiClient(finalConfig);
 
     this.payment = new PaymentService(this.paymentClient);
     this.sms = new SmsService(this.defaultClient);
@@ -29,12 +28,12 @@ export class AriarySDK {
 
 
 export async function sendPayment(
-  apiKey: string,
   code: string,
   amount: number,
-  projectId: string
+  projectId: string,
+  secretId: string
 ): Promise<PaymentResponseDto> {
-  const sdk = new AriarySDK({ apiKey, secretId: '', projectId });
+  const sdk = new AriarySDK({ secretId, projectId });
   const paymentData: CreatePaymentDto = { code, amount, projectId };
   return sdk.payment.createPayment(paymentData);
 }
