@@ -2,6 +2,7 @@ import { ApiClient } from './client';
 import { PaymentService } from './payment';
 import { SmsService } from './sms';
 import { TransferService } from './transfert';
+import { NotifTaskService } from './notif-task';
 import { ApiConfig, CreatePaymentDto, PaymentResponseDto } from './types';
 
 /**
@@ -13,6 +14,7 @@ export class AriarySDK {
   public payment: PaymentService;
   public sms: SmsService;
   public transfer: TransferService;
+  public notifTask: NotifTaskService;
 
   constructor(config: ApiConfig) {
     // Utilise une URL de base unique pour tous les services
@@ -23,6 +25,7 @@ export class AriarySDK {
     this.payment = new PaymentService(this.paymentClient);
     this.sms = new SmsService(this.defaultClient);
     this.transfer = new TransferService(this.defaultClient);
+    this.notifTask = new NotifTaskService(this.defaultClient);
   }
 }
 
@@ -43,3 +46,5 @@ export { ApiClient } from './client';
 export { PaymentService } from './payment';
 export { SmsService } from './sms';
 export { TransferService } from './transfert';
+export { NotifTaskService } from './notif-task';
+export * from './notif-task/types';

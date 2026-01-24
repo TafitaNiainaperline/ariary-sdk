@@ -114,6 +114,29 @@ export class ApiClient {
   }
 
   /**
+   * Effectue une requête DELETE avec les en-têtes d'authentification
+   */
+  async delete<T>(
+    endpoint: string,
+    requiresSecret: boolean = true
+  ): Promise<T> {
+    const headers: any = {
+      'x-project-id': this.config.projectId,
+    };
+
+    if (requiresSecret) {
+      headers['x-secret-id'] = this.config.secretId;
+    }
+
+    try {
+      const response = await this.client.delete(endpoint, { headers });
+      return response.data;
+    } catch (error: any) {
+      throw this.handleError(error);
+    }
+  }
+
+  /**
    * Gère les erreurs API
    */
   private handleError(error: any): Error {
