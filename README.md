@@ -79,13 +79,6 @@ const allTransactions = await sdk.transfer.getAll();
 ### NotifTask
 
 ```typescript
-// Créer une tâche de notification
-const notifTask = await sdk.notifTask.create({
-  projectId: 'votre_project_id',
-  // autres paramètres requis...
-});
-
-// Récupérer toutes les tâches de notification
 const allTasks = await sdk.notifTask.findAll('votre_project_id');
 
 // Récupérer une tâche par ID

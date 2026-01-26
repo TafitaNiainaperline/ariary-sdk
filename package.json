@@ -25,6 +25,11 @@
       "types": "./dist/transfert/index.d.ts",
       "import": "./dist/transfert/index.mjs",
       "require": "./dist/transfert/index.js"
+    },
+    "./notif-task": {
+      "types": "./dist/notif-task/index.d.ts",
+      "import": "./dist/notif-task/index.mjs",
+      "require": "./dist/notif-task/index.js"
     }
   },
   "files": [
@@ -36,7 +41,8 @@
         "index": "src/index.ts",
         "payment/index": "src/payment/index.ts",
         "sms/index": "src/sms/index.ts",
-        "transfert/index": "src/transfert/index.ts"
+        "transfert/index": "src/transfert/index.ts",
+        "notif-task/index": "src/notif-task/index.ts"
       },
       "format": [
         "cjs",
