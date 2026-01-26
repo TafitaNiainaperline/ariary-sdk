@@ -76,10 +76,40 @@ const transaction = await sdk.transfer.send('261345678901', 5000);
 const allTransactions = await sdk.transfer.getAll();
 ```
 
+### NotifTask
+
+```typescript
+// Créer une tâche de notification
+const notifTask = await sdk.notifTask.create({
+  projectId: 'votre_project_id',
+  // autres paramètres requis...
+});
+
+// Récupérer toutes les tâches de notification
+const allTasks = await sdk.notifTask.findAll('votre_project_id');
+
+// Récupérer une tâche par ID
+const task = await sdk.notifTask.findOne(taskId);
+
+// Mettre à jour une tâche
+const updated = await sdk.notifTask.update(taskId, {
+  // paramètres à mettre à jour...
+});
+
+// Supprimer une tâche
+const deleted = await sdk.notifTask.remove(taskId);
+
+// Récupérer les détails des SMS
+const smsDetails = await sdk.notifTask.getSmsDetails(taskId);
+
+// Réessayer les SMS échoués
+const retry = await sdk.notifTask.retryFailedSms(taskId);
+```
+
 ## Imports
 
 ```typescript
-import { AriarySDK, PaymentService, SmsService, TransferService } from '@ariary/ariary';
+import { AriarySDK, PaymentService, SmsService, TransferService, NotifTaskService } from '@ariary/ariary';
 ```
 
 ## Types
@@ -103,6 +133,13 @@ Tous les types TypeScript sont inclus automatiquement (.d.ts).
 - SendTransactionDto
 - SendTransactionResponse
 - TransactionResponseDto
+
+// NotifTask
+- CreateNotifTaskDto
+- ResponseNotifTaskDto
+- NotifTaskDetailsDto
+- UpdateNotifTaskDto
+- RetryFailedSmsResponseDto
 ```
 
 ## API

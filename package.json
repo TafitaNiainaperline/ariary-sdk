@@ -1,6 +1,6 @@
 {
   "name": "@ariary/ariary",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "SDK officiel pour l'API de paiement Ariary",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
