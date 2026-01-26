@@ -1,6 +1,5 @@
 import { ApiClient } from './client';
 import {
-  CreateNotifTaskDto,
   ResponseNotifTaskDto,
   NotifTaskDetailsDto,
   UpdateNotifTaskDto,
@@ -9,18 +8,6 @@ import {
 
 export class NotifTaskService {
   constructor(private client: ApiClient) {}
-
-  async create(
-    createNotifTaskDto: CreateNotifTaskDto
-  ): Promise<ResponseNotifTaskDto> {
-    const response = await this.client.post<ResponseNotifTaskDto>(
-      '/api/notif-task',
-      createNotifTaskDto,
-      true
-    );
-
-    return response;
-  }
 
   async findAll(projectId: string): Promise<ResponseNotifTaskDto[]> {
     const response = await this.client.get<ResponseNotifTaskDto[]>(
